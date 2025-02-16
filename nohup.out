@@ -5,3 +5,14 @@
 2025/02/08 03:32:50 [fleetproject-403015:us-central1:blog-db] client closed the connection
 2025/02/08 03:34:46 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:47814
 2025/02/08 03:46:05 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/16 15:49:42 Authorizing with Application Default Credentials
+2025/02/16 15:49:43 [fleetproject-403015:us-central1:blog-db] Listening on 127.0.0.1:5432
+2025/02/16 15:49:43 The proxy has started successfully and is ready for new connections!
+2025/02/16 15:57:47 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:49942
+2025/02/16 16:03:45 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/16 16:17:47 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:57142
+2025/02/16 16:30:08 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/16 16:37:47 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:59634
+2025/02/16 16:39:08 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/16 16:42:45 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:39402
+2025/02/16 16:43:43 [fleetproject-403015:us-central1:blog-db] client closed the connection

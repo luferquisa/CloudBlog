@@ -15,7 +15,7 @@ def get_posts(db: Session = Depends(get_db)):
 
 @app.post("/posts")
 def create_post(title: str, content: str, db: Session = Depends(get_db)):
-    new_post = Post(title=title, content=content)
+    new_post = Post(author_id=1,title=title, content=content)
     db.add(new_post)
     db.commit()
     return {"message": "Post created successfully!"}
