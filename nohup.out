@@ -1,0 +1,7 @@
+2025/02/08 03:31:49 Authorizing with Application Default Credentials
+2025/02/08 03:31:50 [fleetproject-403015:us-central1:blog-db] Listening on 127.0.0.1:5432
+2025/02/08 03:31:50 The proxy has started successfully and is ready for new connections!
+2025/02/08 03:32:12 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:40882
+2025/02/08 03:32:50 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/08 03:34:46 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:47814
+2025/02/08 03:46:05 [fleetproject-403015:us-central1:blog-db] client closed the connection
