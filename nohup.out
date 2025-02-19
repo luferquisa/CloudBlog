@@ -18,3 +18,23 @@
 2025/02/16 16:43:43 [fleetproject-403015:us-central1:blog-db] client closed the connection
 2025/02/16 17:09:55 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:60404
 2025/02/16 17:10:14 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/16 17:13:59 Authorizing with Application Default Credentials
+2025/02/16 17:13:59 [fleetproject-403015:us-central1:blog-db] could not listen to address 127.0.0.1:5432: listen tcp 127.0.0.1:5432: bind: address already in use
+2025/02/16 17:13:59 The proxy has encountered a terminal error: unable to start: [fleetproject-403015:us-central1:blog-db] Unable to mount socket: listen tcp 127.0.0.1:5432: bind: address already in use
+2025/02/18 15:27:06 Authorizing with Application Default Credentials
+2025/02/18 15:27:12 [fleetproject-403015:us-central1:blog-db] Listening on 127.0.0.1:5432
+2025/02/18 15:27:12 The proxy has started successfully and is ready for new connections!
+2025/02/18 15:56:16 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:36622
+2025/02/18 15:59:06 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/18 15:59:09 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:34598
+2025/02/18 15:59:09 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/18 15:59:15 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:34610
+2025/02/18 15:59:30 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/18 16:00:06 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:35232
+2025/02/18 16:14:37 [fleetproject-403015:us-central1:blog-db] client closed the connection
+2025/02/18 16:30:15 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:33630
+2025/02/19 03:21:33 Authorizing with Application Default Credentials
+2025/02/19 03:21:40 [fleetproject-403015:us-central1:blog-db] Listening on 127.0.0.1:5432
+2025/02/19 03:21:40 The proxy has started successfully and is ready for new connections!
+2025/02/19 03:21:44 [fleetproject-403015:us-central1:blog-db] accepted connection from 127.0.0.1:54094
+2025/02/19 03:22:12 [fleetproject-403015:us-central1:blog-db] client closed the connection
