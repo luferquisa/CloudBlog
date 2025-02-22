@@ -25,7 +25,11 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
+.vscode/
+.venv/
+cloud_sql_proxy
+nohup.out
+fleetproject-403015:us-central1:blog-db
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

@@ -23,7 +23,7 @@ def get_posts_with_average_ratings(db: Session = Depends(get_db)):
         .outerjoin(Rating, Post.id == Rating.post_id)
         .group_by(Post.id)
         .all()
-    )
+    )   
 
     return [
         {

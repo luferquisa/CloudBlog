@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, func
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, func, Table
 from sqlalchemy.orm import relationship
 from .database import Base
+
 
 class User(Base):
     __tablename__ = "users"
@@ -39,3 +40,11 @@ class Tag(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
+
+
+class PostTag(Base):
+    __tablename__ = "post_tags"
+
+    post_id = Column("post_id", Integer, ForeignKey("posts.id", ondelete="CASCADE"), primary_key=True)
+    tag_id = Column("tag_id", Integer, ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True)
+
