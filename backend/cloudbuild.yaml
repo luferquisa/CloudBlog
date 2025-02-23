@@ -1,0 +1,13 @@
+steps:
+  # 1. Construir la imagen con Google Cloud Build
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['builds', 'submit', '--tag', 'us-central1-docker.pkg.dev/fleetproject-403015/backend:latest']
+  # 2. Actualizar el despliegue en Kubernetes (GKE)
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: [ 'set', 'image', 'deployment/blog-backend', 'backend=us-central1-docker.pkg.dev/fleetproject-403015/blog/backend:latest' ]
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-b' # Cambia por tu zona
+      - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1' # Cambia por el nombre de tu clúster
+      - 'CLOUDSDK_CORE_PROJECT=fleetproject-403015'
+images:
+  - 'us-central1-docker.pkg.dev/fleetproject-403015/blog/backend:latest'

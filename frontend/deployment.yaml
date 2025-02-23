@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - name: front
+          image: us-central1-docker.pkg.dev/fleetproject-403015/blog/frontend:latest
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-service
+spec:
+  selector:
+    app: front
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+  type: LoadBalancer
