@@ -78,3 +78,6 @@ def rate_post(rating_data: RatingCreate, db: Session = Depends(get_db)):
     db.add(new_rating)
     db.commit()
     db.refresh(new_rating)
+
+
+

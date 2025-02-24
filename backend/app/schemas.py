@@ -13,3 +13,8 @@ class TagResponse(TagCreate):
 
     class Config:
         orm_mode = True
+
+# Modelo para validar el cuerpo del POST
+class PostCreate(BaseModel):
+    title: str
+    content: str
