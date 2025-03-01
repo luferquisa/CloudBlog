@@ -15,6 +15,8 @@ function Home() {
         fetchRatings(data);
         setPosts(data);})
       .catch((error) => console.error("Error fetching posts:", error));
+
+      
   }, []);
 
   // Función para obtener los ratings de cada post
@@ -30,12 +32,13 @@ function Home() {
         })
         .catch((error) => console.error(`Error al obtener rating para post ${post.id}:`, error));
     });
+    console.log("post "+JSON.stringify(posts));
   };
 
   return (
     <div style={{ textAlign: "center", padding: "50px" }}>
-      <h1>Welcome to My Blog</h1>
-      <p>This is a simple blog application built with React.</p>
+      <h1>Welcome to My Blog Luisa</h1>
+      <p>Este es el blog de seguridad cloud</p>
       <h2 className="text-2xl font-semibold text-gray-800">Últimos Posts</h2>
       <Link
           to="/createpost"
@@ -49,13 +52,13 @@ function Home() {
             <h3 className="text-xl font-semibold text-gray-700">{post.title}</h3>
             <p className="text-gray-600 mt-2">{post.content}</p>
             <p className="mt-2 text-yellow-500 font-bold">
-              ⭐ {ratings[post.id] !== undefined ? ratings[post.id].toFixed(1) : "Cargando..."}
+              ⭐ {ratings[post.id] !== undefined ? ratings[post.id].toFixed(1): "Cargando..."}
             </p>
             <a href={`/post/${post.id}`} className="mt-3 inline-block text-blue-500 hover:underline">
               Leer más
             </a>
           </div>
-        ))}
+        ))}c
       </div>
       
       
