@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from .database import get_db
-from .models import Tag, Post, PostTag
+from .models import Tag, Post
 from .schemas import TagCreate, TagResponse
+from .usuarios import verify_token
 
 router = APIRouter(
     prefix="/tags",
@@ -10,7 +11,7 @@ router = APIRouter(
 )
 
 @router.post("/creartag", response_model=TagResponse)
-def create_tag(tag_data: TagCreate, db: Session = Depends(get_db)):
+def create_tag(tag_data: TagCreate, tr = Depends(verify_token),db: Session = Depends(get_db)):
     """
     Crea una nueva etiqueta si no existe.
     """
@@ -26,15 +27,15 @@ def create_tag(tag_data: TagCreate, db: Session = Depends(get_db)):
 
 
 @router.get("/gettags", response_model=list[TagResponse])
-def get_tags(db: Session = Depends(get_db)):
+def get_tags(str = Depends(verify_token), db: Session = Depends(get_db)):
     """
     Obtiene todas las etiquetas.
     """
     return db.query(Tag).all()
 
-
+'''
 @router.get("/savetag")
-def save_tags(post_id: int, tag_id: int, db: Session = Depends(get_db)):
+def save_tags(post_id: int, tag_id: int, tr = Depends(verify_token), db: Session = Depends(get_db)):
     """
     Valida que las etiquetas existen
     """
@@ -59,3 +60,4 @@ def save_tags(post_id: int, tag_id: int, db: Session = Depends(get_db)):
     db.refresh(new_tag_post)
         
 
+'''

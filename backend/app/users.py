@@ -1,37 +1,22 @@
-from fastapi import FastAPI, Depends, HTTPException, status  
-from pydantic import BaseModel  
-from typing import Optional  
-from datetime import datetime, timedelta  
-from jose import JWTError, jwt  
-from passlib.context import CryptContext  
-import uuid  
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from .database import get_db
+from .models import User
 
-app = FastAPI()  
-
+'''
 # Configuración de seguridad  
 SECRET_KEY = "tu_clave_secreta_unica_y_compleja"  
 ALGORITHM = "HS256"  
-ACCESS_TOKEN_EXPIRE_MINUTES = 30  
+ACCESS_TOKEN_EXPIRE_MINUTES = 30  '''
 
+router = APIRouter(
+    prefix="/usuarios",
+    tags=["Usuarios"]
+)
+'''
 # Contexto para hashing de contraseñas  
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")  
 
-# Modelos Pydantic  
-class UserCreate(BaseModel):  
-    username: str  
-    email: str  
-    password: str  
-
-class UserInDB(UserCreate):  
-    id: str  
-    hashed_password: str  
-
-class Token(BaseModel):  
-    access_token: str  
-    token_type: str  
-
-# Base de datos temporal para ejemplo  
-fake_users_db = {}  
 
 # Funciones de utilidad  
 def get_password_hash(password):  
@@ -46,27 +31,24 @@ def create_access_token(data: dict):
     to_encode.update({"exp": expire})  
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)  
     return encoded_jwt  
-
+'''
 # Endpoints  
-@app.post("/users/register", response_model=UserInDB)  
-async def register_user(user: UserCreate):  
-    if user.username in fake_users_db:  
-        raise HTTPException(  
-            status_code=status.HTTP_400_BAD_REQUEST,  
-            detail="El nombre de usuario ya existe"  
-        )  
+@router.post("/register")  
+def register_user(user: User, db: Session = Depends(get_db)):  
+    print("sfasdf")
+    '''
+    existing_user = db.query(User).filter(User.email == user.email).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="El usuario ya existe")
     
     hashed_password = get_password_hash(user.password)  
+
     user_id = str(uuid.uuid4())  
-    db_user = UserInDB(  
-        id=user_id,  
-        username=user.username,  
-        email=user.email,  
-        password=user.password,  
-        hashed_password=hashed_password  
-    )  
-    fake_users_db[user.username] = db_user.dict()  
-    return db_user  
+    new_user = User(username=user.username, email=user.email, password=hashed_password)
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return {"message": "Usuario registrado exitosamente "
 
 @app.post("/users/login", response_model=Token)  
 async def login_for_access_token(username: str, password: str):  
@@ -85,3 +67,4 @@ async def login_for_access_token(username: str, password: str):
 async def reset_password(email: str):  
     # Lógica de recuperación de contraseña (implementar según necesidades)  
     return {"message": "Instrucciones enviadas al correo electrónico"}
+'''

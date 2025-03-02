@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from .database import get_db
 from .models import Rating, Post, User, func
 from .schemas import RatingCreate
+from .usuarios import verify_token
 
 router = APIRouter(
     prefix="/ratings",
@@ -10,7 +11,7 @@ router = APIRouter(
 )
 
 @router.get("/posts/average")
-def get_posts_with_average_ratings(db: Session = Depends(get_db)):
+def get_posts_with_average_ratings(str = Depends(verify_token), db: Session = Depends(get_db)):
     """
     Obtiene todos los posts con su promedio de calificación.
     """
@@ -35,7 +36,7 @@ def get_posts_with_average_ratings(db: Session = Depends(get_db)):
     ]
 
 @router.get("/{post_id}/average")
-def get_average_rating(post_id: int, db: Session = Depends(get_db)):
+def get_average_rating(post_id: int, str = Depends(verify_token), db: Session = Depends(get_db)):
     """
     Obtiene el promedio de calificaciones para un post específico.
     """
@@ -47,7 +48,7 @@ def get_average_rating(post_id: int, db: Session = Depends(get_db)):
     }
 
 @router.post("/")
-def rate_post(rating_data: RatingCreate, db: Session = Depends(get_db)):
+def rate_post(rating_data: RatingCreate, str = Depends(verify_token), db: Session = Depends(get_db)):
     """
     Permite a un usuario asignar una calificación a un post.
     {

@@ -2,6 +2,13 @@ from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, func
 from sqlalchemy.orm import relationship
 from .database import Base
 
+# Tabla intermedia para la relación Many-to-Many entre Posts y Tags
+post_tags_table = Table(
+    "post_tags",
+    Base.metadata,
+    Column("post_id", Integer, ForeignKey("posts.id"), primary_key=True),
+    Column("tag_id", Integer, ForeignKey("tags.id"), primary_key=True),
+)
 
 class User(Base):
     __tablename__ = "users"
@@ -10,6 +17,9 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
     password = Column(String)
+
+
+
 
 class Post(Base):
     __tablename__ = "posts"
@@ -20,6 +30,8 @@ class Post(Base):
     author_id = Column(Integer, ForeignKey("users.id"))
     
     author = relationship("User")
+    # Relación Many-to-Many con Tags
+    tags = relationship("Tag", secondary=post_tags_table, back_populates="posts")
 
 class Rating(Base):
     __tablename__ = "ratings"
@@ -40,11 +52,5 @@ class Tag(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
-
-
-class PostTag(Base):
-    __tablename__ = "post_tags"
-
-    post_id = Column("post_id", Integer, ForeignKey("posts.id", ondelete="CASCADE"), primary_key=True)
-    tag_id = Column("tag_id", Integer, ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True)
-
+    # Relación inversa con Posts
+    posts = relationship("Post", secondary=post_tags_table, back_populates="tags")

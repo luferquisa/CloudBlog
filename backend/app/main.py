@@ -5,10 +5,22 @@ from .models import Post, User
 from .post import router as post_router
 from .rating import router as ratings_router
 from .tags import router as tag_router
+from .usuarios import router as usuarios_router
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer
 
-app = FastAPI()
 
+
+app = FastAPI(
+    title="backend seguridad blog",
+    description="API con autenticación en FastAPI",
+    version="1.0",
+    docs_url="/docs",  # URL para Swagger UI
+    redoc_url="/redoc",  # URL para ReDoc (opcional)
+    openapi_url="/openapi.json"  # URL para el esquema OpenAPI
+)
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="usuarios/login") 
 # Configurar los orígenes permitidos
 origins = [
     "https://5174-cs-863335159225-default.cs-us-east1-yeah.cloudshell.dev",  # Tu frontend en Cloud Shell
@@ -29,6 +41,7 @@ app.add_middleware(
 app.include_router(post_router)
 app.include_router(ratings_router)
 app.include_router(tag_router)
+app.include_router(usuarios_router)
 
 @app.get("/")
 def read_root():
