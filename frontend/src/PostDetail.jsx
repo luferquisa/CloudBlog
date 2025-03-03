@@ -176,11 +176,11 @@ const PostDetail = () => {
       <a href="/" className="mt-6 inline-block text-blue-600 hover:underline">← Volver al inicio</a>
       {/* Sección de Calificación */}
       <div className="mt-6">
-        <h3 className="text-lg font-semibold text-gray-800">Calificar este Post</h3>
+        <h3 className="text-lg font-semibold text-blue-800">Calificar este Post</h3>
         <select
           value={rating}
           onChange={(e) => setRating(parseFloat(e.target.value))}
-          className="mt-2 p-2 border rounded-md"
+          className="mt-2 p-2 border text-blue-600  rounded-md"
         >
           <option value={0}>Selecciona una calificación</option>
           <option value={1}>⭐ 1</option>

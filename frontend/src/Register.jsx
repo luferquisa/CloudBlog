@@ -50,7 +50,7 @@ const Register = () => {
             <label className="block text-gray-700">Nombre de Usuario</label>
             <input
               type="text"
-              className="w-full p-2 border rounded mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full p-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -61,7 +61,7 @@ const Register = () => {
             <label className="block text-gray-700">Correo Electrónico</label>
             <input
               type="email"
-              className="w-full p-2 border rounded mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full p-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -72,7 +72,7 @@ const Register = () => {
             <label className="block text-gray-700">Contraseña</label>
             <input
               type="password"
-              className="w-full p-2 border rounded mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full p-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -81,7 +81,7 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+            className="w-full bg-black text-white px-4 py-2 rounded text-white py-2 hover:bg-blue-600 transition"
           >
             Registrarse
           </button>

@@ -81,26 +81,26 @@ function UpdatePost({ postId }) {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h2>Editar Post</h2>
+    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
+      <h2 className="text-3xl font-bold text-gray-800 mb-4">Editar Post</h2>
       {message && <p style={{ color: "green" }}>{message}</p>}
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className="block text-gray-600 font-medium">
           Título:
           <input type="text" name="title" value={post.title} onChange={handleChange} required />
         </label>
         <br />
-        <label>
+        <label className="block text-gray-600 font-medium">
           Contenido:
-          <textarea name="content" value={post.content} onChange={handleChange} required />
+          <textarea name="content" value={post.content} onChange={handleChange} required  className="w-full p-2 border border-gray-300 rounded-md"/>
         </label>
         <br />
-        <label>
+        <label className="block text-gray-600 font-medium">
           Etiquetas (separadas por coma):
-          <input type="text" name="tags" value={post.tags} onChange={handleChange} required />
+          <input type="text" name="tags" value={post.tags} onChange={handleChange} required  className="w-full p-2 border border-gray-300 rounded-md"/>
         </label>
         <br />
-        <button type="submit">Actualizar Post</button>
+        <button className="bg-black text-white px-4 py-2 rounded" type="submit">Actualizar Post</button>
       </form>
     </div>
   );

@@ -29,12 +29,13 @@ const Login = () => {
       // Guardar el token en LocalStorage
       localStorage.setItem("token", data.access_token);
       localStorage.setItem("user_id",data.user_id)
-      // Redirigir al usuario después del login
-      navigate("/");
+      
 
     } catch (err) {
       setError(err.message);
     }
+    // Redirigir al usuario después del login
+    navigate("/home", { replace: true });
   };
 
   return (
@@ -49,7 +50,7 @@ const Login = () => {
             <label className="block text-gray-700">Correo Electrónico</label>
             <input
               type="email"
-              className="w-full p-2 border rounded mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full p-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -60,7 +61,7 @@ const Login = () => {
             <label className="block text-gray-700">Contraseña</label>
             <input
               type="password"
-              className="w-full p-2 border rounded mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full p-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -69,7 +70,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+            className="w-full bg-black text-white px-4 py-2 rounded py-2 hover:bg-blue-600 transition"
           >
             Iniciar Sesión
           </button>

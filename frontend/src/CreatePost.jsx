@@ -86,7 +86,7 @@ const CreatePost = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -96,7 +96,7 @@ const CreatePost = () => {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md h-40"
+            className="w-full p-2 border border-gray-300 rounded-md text-black h-32 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -104,7 +104,7 @@ const CreatePost = () => {
             <label className="block text-gray-700">Etiquetas (separadas por comas)</label>
             <input
               type="text"
-              className="w-full p-2 border rounded mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full p-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Ej: Python, FastAPI, Backend"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
@@ -113,7 +113,7 @@ const CreatePost = () => {
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+          className="bg-blue-600 bg-black text-white px-4 py-2 rounded  hover:bg-blue-700"
         >
           Publicar
         </button>

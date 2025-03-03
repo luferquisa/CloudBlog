@@ -17,6 +17,7 @@ function App() {
     <Router>
         <Routes>
           <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="/post/:id" element={<PrivateRoute><PostDetail /></PrivateRoute>} />
           <Route path="/post/:id/edit" element={<PrivateRoute><UpdatePost /></PrivateRoute>} /> 
           <Route path="/createpost" element={<PrivateRoute><CreatePost /></PrivateRoute> }/>
