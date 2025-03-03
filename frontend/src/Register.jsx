@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { config } from "./config";
 
+//Pagina de registro de usuarios
 const Register = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -15,7 +17,7 @@ const Register = () => {
     setSuccess(false);
 
     try {
-      const response = await fetch("http://104.198.196.96/usuarios/registrar", {
+      const response = await fetch(`http://${config.BACKEND_URL}/usuarios/registrar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),

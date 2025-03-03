@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link, useParams } from "react-router-dom";
+import { config } from "./config";
 
+//Muestra un post particular
 const PostDetail = () => {
   const { id } = useParams(); // Obtener el ID del post desde la URL
   const [post, setPost] = useState(null);
   const [rating, setRating] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [ratingp, setRatingp] = useState(null);
   const [error, setError] = useState(null);
+  
+  const [message, setMessage] = useState("");
 
   const handleLogout = () => {
     logout();
@@ -18,13 +23,13 @@ const PostDetail = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-
+  const author = localStorage.getItem("user_id");
   const handleDelete = async () => {
     const confirmDelete = window.confirm("¿Estás seguro de que quieres eliminar este post?");
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`http://104.198.196.96/posts/posts/${id}`, {
+      const response = await fetch(`http://${config.BACKEND_URL}/posts/posts/${id}`, {
         mode:  'cors',
         method: "DELETE",
         headers: {
@@ -48,7 +53,7 @@ const PostDetail = () => {
   
   useEffect(() => {
     // URL del backend para obtener el detalle del post
-    const API_URL = `http://104.198.196.96/posts/${id}`;
+    const API_URL = `http://${config.BACKEND_URL}/posts/${id}`;
     ratings();
     fetch(API_URL,{
       mode:  'cors',
@@ -76,11 +81,33 @@ const PostDetail = () => {
       
   }, [id]);
 
+  const handleRatingSubmit = async () => {
+    const response = await fetch(`http://${config.BACKEND_URL}/ratings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`, // Enviar el token en el header
+      },
+      body: JSON.stringify({
+        post_id : id,
+        user_id: author,
+        rating: rating
+      }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      setMessage("Calificación enviada correctamente.");
+    } else {
+      setMessage("Error al calificar el post.");
+    }
+  };
+
   // Función para obtener los ratings de cada post
   function ratings(){
     console.log("Rating "+id+" "+token);
         try{
-          fetch(`http://104.198.196.96/ratings/${id}/average`,{
+          fetch(`http://${config.BACKEND_URL}/ratings/${id}/average`,{
             mode:  'cors',  
             method: "GET",
             headers: {
@@ -88,7 +115,7 @@ const PostDetail = () => {
             },
           })
           .then(response => response.json())
-          .then(data => setRating(data.average_rating)) 
+          .then(data => setRatingp(data.average_rating)) 
           .catch(error => console.error("Error al obtener el promedio:", error));
           //console.log("entro"+JSON.stringify(response));
           //console.log("rating "+JSON.stringify(response));
@@ -128,7 +155,7 @@ const PostDetail = () => {
         )}
       </p>
       <p className="mt-2 text-yellow-500 font-bold">
-      ⭐ {rating !== null ? <p>{rating}</p> : <p>Cargando...</p>}
+      ⭐ {ratingp !== null ? <p>{ratingp}</p> : <p>Cargando...</p>}
       </p>
      <div className="mt-6">
       <p className="text-gray-600 mt-2">
@@ -147,6 +174,29 @@ const PostDetail = () => {
         </div>
       </div>
       <a href="/" className="mt-6 inline-block text-blue-600 hover:underline">← Volver al inicio</a>
+      {/* Sección de Calificación */}
+      <div className="mt-6">
+        <h3 className="text-lg font-semibold text-gray-800">Calificar este Post</h3>
+        <select
+          value={rating}
+          onChange={(e) => setRating(parseFloat(e.target.value))}
+          className="mt-2 p-2 border rounded-md"
+        >
+          <option value={0}>Selecciona una calificación</option>
+          <option value={1}>⭐ 1</option>
+          <option value={2}>⭐⭐ 2</option>
+          <option value={3}>⭐⭐⭐ 3</option>
+          <option value={4}>⭐⭐⭐⭐ 4</option>
+          <option value={5}>⭐⭐⭐⭐⭐ 5</option>
+        </select>
+        <button
+          onClick={handleRatingSubmit}
+          className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+        >
+          Enviar Calificación
+        </button>
+        {message && <p className="mt-2 text-green-600">{message}</p>}
+      </div>
     </div>
   );
 };

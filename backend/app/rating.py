@@ -10,6 +10,9 @@ router = APIRouter(
     tags=["Ratings"]
 )
 
+#Endpoint para la asignacion y consulta de calificaciones
+
+
 @router.get("/posts/average")
 def get_posts_with_average_ratings(str = Depends(verify_token), db: Session = Depends(get_db)):
     """
@@ -34,6 +37,7 @@ def get_posts_with_average_ratings(str = Depends(verify_token), db: Session = De
         }
         for post in posts_with_ratings
     ]
+
 
 @router.get("/{post_id}/average")
 def get_average_rating(post_id: int, str = Depends(verify_token), db: Session = Depends(get_db)):

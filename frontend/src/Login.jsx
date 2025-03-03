@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { config } from "./config";
 
+//Pagina para autenticacion
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -12,7 +14,7 @@ const Login = () => {
     setError(""); // Limpiar errores previos
 
     try {
-      const response = await fetch("http://104.198.196.96/usuarios/login", {
+      const response = await fetch(`http://${config.BACKEND_URL}/usuarios/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

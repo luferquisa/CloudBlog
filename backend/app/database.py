@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
+#Se encarga de la conexion a la base de datos
 DATABASE_URL = "blog_user:Pass123@localhost/blog_db"
 
 engine = create_engine(

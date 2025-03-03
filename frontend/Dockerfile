@@ -9,6 +9,7 @@ RUN npm install
 
 COPY . .
 
+
 # Construir la aplicación
 RUN npm run build
 

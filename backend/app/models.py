@@ -2,6 +2,8 @@ from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, func
 from sqlalchemy.orm import relationship
 from .database import Base
 
+#Los modelos representan entidades de la base de datos de la aplicación y sus relaciones
+
 # Tabla intermedia para la relación Many-to-Many entre Posts y Tags
 post_tags_table = Table(
     "post_tags",
@@ -10,6 +12,7 @@ post_tags_table = Table(
     Column("tag_id", Integer, ForeignKey("tags.id"), primary_key=True),
 )
 
+#Tabla usuarios
 class User(Base):
     __tablename__ = "users"
 
@@ -18,9 +21,7 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     password = Column(String)
 
-
-
-
+#Tabla de los post
 class Post(Base):
     __tablename__ = "posts"
 
@@ -33,6 +34,7 @@ class Post(Base):
     # Relación Many-to-Many con Tags
     tags = relationship("Tag", secondary=post_tags_table, back_populates="posts")
 
+#Tabla donde se guarda la calificacion de los post
 class Rating(Base):
     __tablename__ = "ratings"
 
@@ -47,6 +49,7 @@ class Rating(Base):
     user = relationship("User")
 
 
+#Tabla donde se guardan los tags
 class Tag(Base):
     __tablename__ = "tags"
 

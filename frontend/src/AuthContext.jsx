@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
+//Permite crear la sesion de los usuarios
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-    console.log("otro cargando "+loading);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {

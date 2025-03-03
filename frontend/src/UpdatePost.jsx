@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { config } from "./config";
 
+
+//Pagina para actualizar los post
 function UpdatePost({ postId }) {
  const { id } = useParams(); // Obtener el ID del post desde la URL
   const [post, setPost] = useState({
@@ -15,7 +18,7 @@ function UpdatePost({ postId }) {
   const token = localStorage.getItem("token");
   // Obtener los datos del post
   useEffect(() => {
-    fetch(`http://104.198.196.96/posts/${id}`,{
+    fetch(`http://${config.BACKEND_URL}/posts/${id}`,{
         mode:  'cors',
         method: "GET",
         headers: {
@@ -56,7 +59,7 @@ function UpdatePost({ postId }) {
     };
 
     try {
-      const response = await fetch(`http://104.198.196.96/posts/postsupdate/${id}`, {
+      const response = await fetch(`http://${config.BACKEND_URL}/posts/postsupdate/${id}`, {
         method: "PUT",
         mode:  'cors',
         headers: {

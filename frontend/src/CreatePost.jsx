@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import { config } from "./config";
 
+//Pagina para crear los post
 const CreatePost = () => {
 
   // Estado para manejar el formulario
@@ -31,7 +33,7 @@ const CreatePost = () => {
     const newPost = { title, content };
     console.log(newPost.title+" prueba prueba"+ tagList[0],+" "+token);
     try {
-      const response = await fetch("http://104.198.196.96/posts/create", { 
+      const response = await fetch(`http://${config.BACKEND_URL}/posts/create`, { 
         mode:  'cors',  
         method: "POST",
         headers: {

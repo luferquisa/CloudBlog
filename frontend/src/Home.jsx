@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
+import { config } from "./config";
+
+//Pagina de bienvenida, lista todos los post 
 
 function Home() {
   
@@ -21,7 +24,7 @@ function Home() {
   //setPage(prev= 1? 1:(prev - 1) * limit);
   // Función para obtener los posts desde el backend
   useEffect(() => {
-    fetch(`http://104.198.196.96/posts?offset=${(page - 1) * limit}&limit=${limit}`, {
+    fetch(`http://${config.BACKEND_URL}/posts?offset=${(page - 1) * limit}&limit=${limit}`, {
           mode:  'cors',
           method: "GET",
           headers: {
@@ -44,7 +47,7 @@ function Home() {
   // Función para obtener los ratings de cada post
   const fetchRatings = (posts) => {
     posts.forEach((post) => {
-      fetch(`http://104.198.196.96/ratings/${post.id}/average`,{
+      fetch(`http://${config.BACKEND_URL}/ratings/${post.id}/average`,{
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`, // Enviar el token en el header
@@ -65,8 +68,8 @@ function Home() {
   return (
     <div className="bg-gray-100 min-h-screen p-6">
       <header className="text-center py-6">
-      <h1 className="text-4xl font-bold text-blue-600">Bienvenidos al blog de Luisa, Diego y Nièdila</h1>
-      <p className="text-gray-600 mt-2">Este es el blog de seguridad cloud</p>
+      <h1 className="text-4xl font-bold text-blue-600">BitSeguro</h1>
+      <p className="text-gray-600 mt-2">Bienvenidos al blog de Luisa, Diego y Nièdila</p>
       <button
               onClick={handleLogout}
               className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
@@ -81,7 +84,15 @@ function Home() {
           to="/createpost"
           className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
         >
+          
           + Nuevo Post
+        </Link>
+        <Link
+          to="/tags"
+          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
+        >
+          
+          + Ver tags
         </Link>
         <div className="grid gap-6">
         {posts.map((post) => (

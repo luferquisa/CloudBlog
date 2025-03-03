@@ -11,6 +11,7 @@ from fastapi.security import OAuth2PasswordBearer
 
 
 
+
 app = FastAPI(
     title="backend seguridad blog",
     description="API con autenticación en FastAPI",
@@ -20,11 +21,14 @@ app = FastAPI(
     openapi_url="/openapi.json"  # URL para el esquema OpenAPI
 )
 
+
+
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="usuarios/login") 
 # Configurar los orígenes permitidos
+#Protección contra CSRF (Cross-Site Request Forgery)
 origins = [
-    "https://5174-cs-863335159225-default.cs-us-east1-yeah.cloudshell.dev",  # Tu frontend en Cloud Shell
-    "http://localhost:3000",  # Para pruebas en local con Create React App
+    "http://35.192.177.211:8080",  # Para pruebas en local con Create React App
     "http://localhost:5173",  # Para pruebas en local con Vite
 ]
 

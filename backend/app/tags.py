@@ -10,6 +10,9 @@ router = APIRouter(
     tags=["Tags"]
 )
 
+#Engpoint para el manejo, asociación y creación de tags
+
+
 @router.post("/creartag", response_model=TagResponse)
 def create_tag(tag_data: TagCreate, tr = Depends(verify_token),db: Session = Depends(get_db)):
     """
@@ -24,6 +27,7 @@ def create_tag(tag_data: TagCreate, tr = Depends(verify_token),db: Session = Dep
     db.commit()
     db.refresh(new_tag)
     return new_tag
+
 
 
 @router.get("/gettags", response_model=list[TagResponse])

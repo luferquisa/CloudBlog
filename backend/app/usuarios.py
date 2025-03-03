@@ -9,6 +9,8 @@ from jose import JWTError, jwt
 from fastapi.security import OAuth2PasswordBearer
 
 
+#Enpoints para el manejo y creacion de usuarios
+
 # Configuración de seguridad  
 SECRET_KEY = "tu_clave_secreta_unica_y_compleja"  
 ALGORITHM = "HS256"  
@@ -51,6 +53,8 @@ def verify_token(token: str = Depends(oauth2_scheme)):
     except JWTError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token inválido o expirado")
 
+
+#Creacion de nuevos usuarios
 @router.post("/registrar")
 def register_user(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter(User.email == user.email).first()
